@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
+    "dev": "node init && ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "node init && tsc",
+    "start": "node init && node dist/server.js",
     "test": "jest"
   },
   "keywords": [],
@@ -21,6 +21,7 @@
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.3",
     "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
     "qrcode": "^1.5.4",
