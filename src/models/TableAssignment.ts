@@ -6,7 +6,6 @@ import {
   BelongsTo,
   Default,
   PrimaryKey,
-  Index,
 } from 'sequelize-typescript';
 import { Optional } from 'sequelize';
 import { BaseModel } from './BaseModel';
@@ -32,8 +31,14 @@ export type TableAssignmentCreationAttributes = Optional<
   tableName: 'table_assignments',
   timestamps: true,
   paranoid: true,
+  indexes: [
+    {
+      name: 'uq_table_assignments_table_id',
+      unique: true,
+      fields: ['table_id'],
+    },
+  ],
 })
-@Index({ name: 'uq_table_assignments_table_id', unique: true, fields: ['table_id'] })
 export class TableAssignment extends BaseModel<TableAssignmentAttributes, TableAssignmentCreationAttributes> {
   @PrimaryKey
   @Default(DataType.UUIDV4)

@@ -6,7 +6,6 @@ import {
   BelongsTo,
   Default,
   PrimaryKey,
-  Index,
 } from 'sequelize-typescript';
 import { Optional } from 'sequelize';
 import { BaseModel } from './BaseModel';
@@ -35,9 +34,11 @@ export type TableRatingCreationAttributes = Optional<
   tableName: 'table_ratings',
   timestamps: true,
   paranoid: true,
+  indexes: [
+    { name: 'idx_table_ratings_waiter', fields: ['waiter_id'] },
+    { name: 'idx_table_ratings_table', fields: ['table_id'] },
+  ],
 })
-@Index({ name: 'idx_table_ratings_waiter', fields: ['waiter_id'] })
-@Index({ name: 'idx_table_ratings_table', fields: ['table_id'] })
 export class TableRating extends BaseModel<TableRatingAttributes, TableRatingCreationAttributes> {
   @PrimaryKey
   @Default(DataType.UUIDV4)
